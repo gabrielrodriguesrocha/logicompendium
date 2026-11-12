@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f9">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%23eeeffb'/%3E%3Ctext x='24' y='35' text-anchor='middle' font-size='36' fill='%23747dbc'%3E∴%3C/text%3E%3C/svg%3E">
+  <title>Logicompendium — An explorer of logical systems</title>
+  <link rel="stylesheet" href="./vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="./" aria-label="Logicompendium home"><span class="brand-mark">∴</span><span>Logicompendium<small>A MAP OF REASONING</small></span></a>
+    <div class="nav-label">EXPLORE</div>
+    <nav aria-label="Main navigation">
+      <button class="nav-item active" data-view="graph"><span>⌘</span> Relationship map <kbd>1</kbd></button>
+      <button class="nav-item" data-view="catalog"><span>▦</span> Logic catalog <kbd>2</kbd></button>
+      <button class="nav-item" data-view="sources"><span>▤</span> Bibliography <kbd>3</kbd></button>
+    </nav>
+    <div class="sidebar-rule"></div>
+    <div class="nav-label">LOGIC FAMILIES <button id="clear-families" title="Show all families">Reset</button></div>
+    <div id="families"></div>
+    <div class="sidebar-note"><span>↗</span><strong>One logic, many perspectives.</strong><p>Explore systems by their structure, semantics, and connections.</p><button id="example-button">Explore J₃ ≃ LFI1 <span>→</span></button></div>
+    <div class="sidebar-footer"><span class="status-dot"></span> Logicompendium <small>v0.1</small></div>
+  </aside>
+  <main>
+    <header class="topbar"><div><span class="breadcrumb">Explore</span><span class="slash">/</span><span id="page-name">Relationship map</span></div><div class="topbar-right"><span class="local-badge">Logic explorer</span><button id="compare-button" class="button small" disabled>⇄ Compare <span id="compare-count">0</span></button><button id="export-button" class="button small">↓ Export JSON</button></div></header>
+    <section class="stats" aria-label="Catalog statistics" id="stats"></section>
+    <section class="workspace" id="workspace">
+      <div class="workspace-toolbar"><div class="view-switch"><button data-view="graph" class="active">⌘ Map</button><button data-view="catalog">▦ Catalog</button></div><button id="lfi-filter" class="button small" aria-pressed="false">LFIs only</button><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search logics, aliases, authors…" aria-label="Search logics, aliases, authors"><kbd>/</kbd></label><button class="button small" id="filters-button" aria-expanded="false">☷ Relationships <span id="filter-count"></span></button></div>
+      <div id="relationship-filters" class="relationship-filters" hidden></div>
+      <div class="logic-filters" aria-label="Logic filters">
+        <label>Family <select id="compact-family" aria-label="Filter by logic family"></select></label>
+        <label>Tag <select id="logic-tag" aria-label="Filter by tag"></select></label>
+        <label>Records <select id="record-kind" aria-label="Filter by record kind"><option value="">All records</option><option value="system">Individual systems</option><option value="family">Families / frameworks</option></select></label>
+        <button class="text-button" data-action="reset-filters">Clear all filters</button>
+      </div>
+      <div id="view-content" aria-live="polite"><div class="loading">Loading the catalog…</div></div>
+    </section>
+    <footer class="page-footer"><span><span class="status-dot"></span> <span id="catalog-status">Reading catalog</span></span><span>A curated starting point, with room to explore.</span></footer>
+  </main>
+  <dialog id="detail-dialog" aria-label="Logic and relationship details"><div id="detail-content"></div></dialog>
+  <dialog id="compare-dialog" aria-label="Compare logical systems"><div id="compare-content"></div></dialog>
+  <div id="toast" role="status" hidden></div>
+</body>
+</html>
